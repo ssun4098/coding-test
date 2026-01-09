@@ -43,18 +43,16 @@ public class Main {
         int xDivLength = (x2 - x1) / 3;
         int yDivLength = (y2 - y1) / 3;
 
-        find(x1, x1 + xDivLength, y1, y1 + yDivLength);
-        find(x1 + xDivLength, x1 + xDivLength * 2, y1, y1 + yDivLength);
-        find(x1 + xDivLength * 2, x2, y1, y1 + yDivLength);
 
-        find(x1, x1 + xDivLength, y1 + yDivLength, y1 + yDivLength * 2);
-        find(x1 + xDivLength, x1 + xDivLength * 2, y1 + yDivLength, y1 + yDivLength * 2);
-        find(x1 + xDivLength * 2, x2, y1 + yDivLength, y1 + yDivLength * 2);
+        for(int i = 0; i < 3; i++) {
+            forX(x1, xDivLength, y1 + yDivLength * i, y1 + yDivLength * (i + 1));
+        }
+    }
 
-        find(x1, x1 + xDivLength, y1 + yDivLength * 2, y2);
-        find(x1 + xDivLength, x1 + xDivLength * 2, y1 + yDivLength * 2, y2);
-        find(x1 + xDivLength * 2, x2, y1 + yDivLength * 2, y2);
-
+    private static void forX(int x1, int xDivLength, int y1, int y2){
+        find(x1, x1 + xDivLength, y1, y2);
+        find(x1 + xDivLength, x1 + xDivLength * 2, y1, y2);
+        find(x1 + xDivLength * 2, x1 + xDivLength * 3, y1, y2);
     }
 
     public static boolean check(int x1, int x2, int y1, int y2, int value) {
