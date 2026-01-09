@@ -25,18 +25,7 @@ public class Main {
             return;
         }
 
-        if(check(x1, x2, y1, y2, -1)) {
-            answer[0]++;
-            return;
-        }
-
-        if(check(x1, x2, y1, y2, 0)) {
-            answer[1]++;
-            return;
-        }
-
-        if(check(x1, x2, y1, y2, 1)) {
-            answer[2]++;
+        if(check(x1, x2, y1, y2)) {
             return;
         }
 
@@ -55,14 +44,24 @@ public class Main {
         find(x1 + xDivLength * 2, x1 + xDivLength * 3, y1, y2);
     }
 
-    public static boolean check(int x1, int x2, int y1, int y2, int value) {
-        for(int i = x1; i < x2; i++) {
-            for(int j = y1; j < y2; j++) {
-                if(array[j][i] != value){
-                    return false;
+    public static boolean check(int x1, int x2, int y1, int y2) {
+        int first = array[y1][x1];
+        boolean allSame = true;
+
+        outer:
+            for(int i = x1; i < x2; i++) {
+                for(int j = y1; j < y2; j++) {
+                    if(array[j][i] != first) {
+                        allSame = false;
+                        break outer;
+                    }
                 }
             }
+
+        if (allSame) {
+            answer[first + 1]++;  // -1→[0], 0→[1], 1→[2]
         }
-        return true;
+
+        return allSame;
     }
 }
