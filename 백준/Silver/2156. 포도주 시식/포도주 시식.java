@@ -19,11 +19,8 @@ public class Main {
             }
 
             memory[1][1] = array[1];
-            memory[2][0] = memory[1][1];
-            memory[2][1] = array[2];
-            memory[2][2] = array[1] + array[2];
 
-            for(int i = 3; i <= n; i++) {
+            for(int i = 2; i <= n; i++) {
                 // 0번 연속으로 마실 겨우
                 memory[i][0] = Math.max(Math.max(memory[i-1][0], memory[i-1][1]), memory[i-1][2]);
 
