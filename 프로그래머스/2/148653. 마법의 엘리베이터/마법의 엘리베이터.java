@@ -1,30 +1,28 @@
 class Solution {
     public int solution(int storey) {
         int answer = 0;
-
-        while (storey > 0) {
-            int digit = storey % 10;
-
-            if (digit < 5) {
-                answer += digit;
-            } 
-            else if (digit > 5) {
-                answer += (10 - digit);
-                storey += 10;
-            } 
-            else { // digit == 5
-                int next = (storey / 10) % 10;
-                if (next >= 5) {
-                    answer += 5;
-                    storey += 10;
+        
+        while(storey > 0) {
+            int mod = storey % 10;
+            if(mod < 5) {
+                answer += mod;
+                storey -= mod;
+            } else if(mod > 5) {
+                answer += 10 - mod;
+                storey += 10 - mod;
+            } else {
+                int storey2 = storey / 10;
+                int storey3 = storey2 % 10;
+                if(storey3 < 5) {
+                    answer += mod;
+                    storey -= mod;
                 } else {
-                    answer += 5;
+                    answer += 10 - mod;
+                    storey += 10 - mod;
                 }
             }
-
-            storey /= 10;
+            storey = storey / 10;
         }
-
         return answer;
     }
 }
