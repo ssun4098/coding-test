@@ -1,24 +1,34 @@
 class Solution {
-    private int answer = 0;
-    private int counter = -1;
-    private String[] array = {"A", "E", "I", "O", "U"};
+
+    private static final char[] WORDS = {'A','E','I','O','U'};
+    private int count = -1;
+    private int answer;
+
     public int solution(String word) {
-        bfs("", word);
+        dfs("", word);
         return answer;
     }
-    
-    public void bfs(String now, String word) {
-        if(now.length() > 5) {
+
+    private void dfs(String current, String target) {
+
+        if(current.length() > 5) {
             return;
         }
-        counter++;
-        if(now.equals(word)) {
-            answer = counter;
+
+        count++;
+
+        if(current.equals(target)) {
+            answer = count;
             return;
         }
-        
-        for(String s: array) {
-            bfs(now + s, word);
+
+        for(char c : WORDS) {
+            dfs(current + c, target);
+
+            // 찾았으면 더 탐색 안함
+            if(answer != 0) {
+                return;
+            }
         }
     }
 }
